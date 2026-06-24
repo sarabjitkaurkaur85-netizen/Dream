@@ -1,0 +1,120 @@
+{
+  "rooms": [
+    {
+      "id": 1,
+      "title": "Deluxe Ocean View",
+      "type": "Deluxe",
+      "description": "Wake up to panoramic ocean views in this elegantly appointed room featuring a private balcony, king-size bed, and luxury amenities.",
+      "price": 200,
+      "capacity": { "adults": 2, "children": 1 },
+      "amenities": ["Free WiFi", "Air Conditioning", "Mini Bar", "Ocean View", "Room Service"],
+      "rating": 4.8,
+      "image": "https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg"
+    },
+    {
+      "id": 2,
+      "title": "Classic Room",
+      "type": "Single",
+      "description": "A beautifully designed room with modern furnishings, plush bedding, and all the comforts of home for a restful stay.",
+      "price": 80,
+      "capacity": { "adults": 2, "children": 0 },
+      "amenities": ["Free WiFi", "Air Conditioning", "Flat Screen TV"],
+      "rating": 4.5,
+      "image": "https://images.pexels.com/photos/271743/pexels-photo-271743.jpeg"
+    },
+    {
+      "id": 3,
+      "title": "Deluxe Suite",
+      "type": "Suite",
+      "description": "Spacious suite with separate living area, lake views, and premium bath amenities for the ultimate relaxation experience.",
+      "price": 150,
+      "capacity": { "adults": 2, "children": 2 },
+      "amenities": ["Free WiFi", "Air Conditioning", "Mini Bar", "Lake View", "Jacuzzi"],
+      "rating": 4.9,
+      "image": "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg"
+    },
+    {
+      "id": 4,
+      "title": "Ocean View Seagull",
+      "type": "Deluxe",
+      "description": "Premium beachfront room with floor-to-ceiling windows, private terrace, and direct beach access.",
+      "price": 240,
+      "capacity": { "adults": 2, "children": 1 },
+      "amenities": ["Free WiFi", "Air Conditioning", "Mini Bar", "Ocean View", "Beach Access", "Butler Service"],
+      "rating": 4.7,
+      "image": "https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg"
+    },
+    {
+      "id": 5,
+      "title": "Presidential Suite",
+      "type": "Suite",
+      "description": "The pinnacle of luxury — a lavish suite with panoramic views, private pool, and personalized concierge service.",
+      "price": 450,
+      "capacity": { "adults": 4, "children": 2 },
+      "amenities": ["Free WiFi", "Air Conditioning", "Mini Bar", "Private Pool", "Butler Service", "Lounge Access"],
+      "rating": 5.0,
+      "image": "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg"
+    },
+    {
+      "id": 6,
+      "title": "Garden Villa",
+      "type": "Family",
+      "description": "Secluded villa surrounded by tropical gardens, featuring an outdoor shower and private dining pavilion.",
+      "price": 320,
+      "capacity": { "adults": 2, "children": 2 },
+      "amenities": ["Free WiFi", "Air Conditioning", "Private Garden", "Outdoor Shower", "Room Service"],
+      "rating": 4.6,
+      "image": "https://images.pexels.com/photos/189296/pexels-photo-189296.jpeg"
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "title": "Fitness Center",
+      "description": "State-of-the-art equipment with personal trainers available.",
+      "image": "https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg",
+      "hours": "6:00 AM – 10:00 PM"
+    },
+    {
+      "id": 2,
+      "title": "Fine Dining",
+      "description": "World-class cuisine with ocean views and live music.",
+      "image": "https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg",
+      "hours": "7:00 AM – 11:00 PM"
+    },
+    {
+      "id": 3,
+      "title": "Infinity Pool",
+      "description": "Stunning beachfront pool with cabana service and poolside bar.",
+      "image": "https://images.pexels.com/photos/261327/pexels-photo-261327.jpeg",
+      "hours": "7:00 AM – 9:00 PM"
+    },
+    {
+      "id": 4,
+      "title": "Luxury Spa",
+      "description": "Rejuvenate with traditional Balinese treatments and therapies.",
+      "image": "https://images.pexels.com/photos/374148/pexels-photo-374148.jpeg",
+      "hours": "9:00 AM – 8:00 PM"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "text": "Incredible experience at The Beach Hotel. The level of hospitality is unmatched — the restaurant is beautifully appointed and the pool cabanas, poolside beverages and food were a 10. The service was impeccable.",
+      "author": "John Doe",
+      "location": "New York"
+    },
+    {
+      "id": 2,
+      "text": "A truly magical stay. Every detail was thoughtfully curated, from the welcome drinks to the sunset dinners on the beach. We will definitely be coming back for our anniversary.",
+      "author": "Tony Chester",
+      "location": "London"
+    },
+    {
+      "id": 3,
+      "text": "The Presidential Suite exceeded all expectations. Private pool, breathtaking views, and a personal butler who anticipated our every need. Pure luxury at its finest.",
+      "author": "Sophia Loren",
+      "location": "Milan"
+    }
+  ]
+}

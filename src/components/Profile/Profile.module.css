@@ -1,0 +1,617 @@
+/* ═══════════════════════════════════════════════
+   PROFILE PAGE — LUXURY HOTEL
+   ═══════════════════════════════════════════════ */
+
+.page {
+  background: var(--bg);
+  min-height: 100vh;
+}
+
+.loadingPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 16px;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Hero ─── */
+.profileHero {
+  position: relative;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background:
+    url('https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg?auto=compress&cs=tinysrgb&w=1920')
+    center / cover no-repeat;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,26,31,0.5) 0%, rgba(10,26,31,0.8) 100%);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  border: 4px solid rgba(255,255,255,0.3);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+
+.avatarLetter {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.userName {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.userEmail {
+  color: rgba(255,255,255,0.6);
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.memberBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  background: rgba(201, 168, 76, 0.15);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: var(--radius-full);
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ─── Container ─── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 120px;
+  margin-top: -40px;
+  position: relative;
+  z-index: 3;
+}
+
+/* ─── Tab Nav ─── */
+.tabNav {
+  display: flex;
+  gap: 4px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 6px;
+  margin-bottom: 32px;
+  overflow-x: auto;
+  box-shadow: var(--shadow-sm);
+}
+
+.tab {
+  padding: 14px 24px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-body);
+  white-space: nowrap;
+}
+
+.tab:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.tabActive {
+  background: var(--accent);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* ─── Tab Content ─── */
+.tabContent {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+/* ─── Overview ─── */
+.overviewGrid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 32px;
+}
+
+.infoCard {
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+}
+
+.infoCard h3 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.cardHeader h3 {
+  margin-bottom: 0;
+}
+
+.editBtn {
+  padding: 8px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.editBtn:hover {
+  background: var(--accent);
+  color: var(--primary);
+  border-color: var(--accent);
+}
+
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.infoRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.infoLabel {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.infoValue {
+  font-size: 1rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.editInput {
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-size: 0.95rem;
+  color: var(--text);
+  font-family: var(--font-body);
+  transition: border-color 0.3s ease;
+}
+
+.editInput:focus {
+  border-color: var(--accent);
+}
+
+/* ─── Stats Cards ─── */
+.statsCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.miniCard {
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.miniCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-gold);
+}
+
+.miniIcon {
+  font-size: 1.8rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.miniNumber {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.miniLabel {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ─── Section Title ─── */
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+/* ─── Bookings ─── */
+.bookingsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bookingCard {
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.bookingCard:hover {
+  border-color: var(--border-gold);
+  box-shadow: var(--shadow-sm);
+}
+
+.bookingInfo h4 {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.bookingInfo p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.bookingRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.statusBadge {
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statusConfirmed {
+  background: #d4edda;
+  color: #155724;
+}
+
+.statusCompleted {
+  background: var(--surface);
+  color: var(--text-muted);
+}
+
+.bookingTotal {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.invoiceBtn {
+  padding: 8px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.invoiceBtn:hover {
+  background: var(--accent);
+  color: var(--primary);
+  border-color: var(--accent);
+}
+
+/* ─── Wishlist ─── */
+.wishlistGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.wishlistCard {
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.wishlistCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-gold);
+}
+
+.wishlistIcon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.wishlistCard h4 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.wishlistBtn {
+  padding: 8px 20px;
+  background: var(--primary);
+  color: var(--accent);
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.wishlistBtn:hover {
+  background: var(--accent);
+  color: var(--primary);
+}
+
+/* ─── Notifications ─── */
+.notificationsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.notificationItem {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 20px 24px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  transition: all 0.3s ease;
+}
+
+.notificationItem.unread {
+  border-left: 3px solid var(--accent);
+  background: rgba(201, 168, 76, 0.04);
+}
+
+.notifDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+.unread .notifDot {
+  background: var(--accent);
+}
+
+.notifText {
+  font-size: 0.92rem;
+  color: var(--text);
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
+
+.notifTime {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ─── Settings ─── */
+.settingsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.saveBtn {
+  margin-top: 24px;
+  padding: 14px 32px;
+  background: var(--accent);
+  color: var(--primary);
+  border: none;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.saveBtn:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(201, 168, 76, 0.3);
+}
+
+.actionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.actionBtn {
+  padding: 14px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: 0.92rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  font-family: var(--font-body);
+}
+
+.actionBtn:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-gold);
+  transform: translateX(4px);
+}
+
+.logoutBtn {
+  composes: actionBtn;
+  color: #dc3545;
+  border-color: rgba(220, 53, 69, 0.2);
+}
+
+.logoutBtn:hover {
+  background: #dc3545;
+  color: #fff;
+  border-color: #dc3545;
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .overviewGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .settingsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .bookingCard {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .bookingRight {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .profileHero {
+    height: 300px;
+  }
+
+  .userName {
+    font-size: 1.8rem;
+  }
+
+  .tabNav {
+    gap: 2px;
+    padding: 4px;
+  }
+
+  .tab {
+    padding: 10px 16px;
+    font-size: 0.82rem;
+  }
+
+  .wishlistGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .statsCards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .wishlistGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .avatarLetter {
+    font-size: 2rem;
+  }
+}

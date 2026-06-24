@@ -1,0 +1,402 @@
+/* ═══════════════════════════════════════════════
+   LUXURY HEADER — GLASS MORPHISM + SCROLL AWARE
+   ═══════════════════════════════════════════════ */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  height: var(--header-height);
+}
+
+/* Transparent state on home hero */
+.header.transparent {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom-color: transparent;
+  box-shadow: none;
+}
+
+.header.transparent .logo,
+.header.transparent .navLinks li a,
+.header.transparent .themeToggleDesktop {
+  color: #fff;
+}
+
+.header.transparent .navLinks li a::after {
+  background-color: var(--accent);
+}
+
+.header.transparent .hamburger span {
+  background-color: #fff;
+}
+
+/* Scrolled state */
+.header.scrolled {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* ─── Navbar ─── */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 48px;
+  max-width: 1440px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+/* ─── Logo ─── */
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--primary);
+  letter-spacing: 3px;
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  transition: color 0.3s ease;
+}
+
+.logoMain {
+  font-weight: 700;
+}
+
+.logoAccent {
+  color: var(--accent);
+  font-weight: 400;
+  letter-spacing: 4px;
+}
+
+/* ─── Nav Links ─── */
+.navLinks {
+  display: flex;
+  gap: 2.2rem;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLinks li a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  font-size: 0.88rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: color var(--transition-fast);
+  position: relative;
+  padding-bottom: 4px;
+  font-family: var(--font-body);
+}
+
+.navLinks li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1.5px;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--accent);
+  transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.navLinks li a:hover::after,
+.navLinks li a.activeLink::after {
+  width: 100%;
+}
+
+.navLinks li a:hover {
+  color: var(--accent);
+}
+
+.activeLink {
+  color: var(--accent) !important;
+}
+
+.adminLink {
+  color: var(--accent) !important;
+  font-weight: 600 !important;
+  position: relative;
+}
+
+.adminLink::before {
+  content: '★';
+  margin-right: 4px;
+  font-size: 0.7rem;
+}
+
+/* ─── Book Button ─── */
+.bookBtn {
+  background: var(--accent);
+  color: var(--primary) !important;
+  padding: 11px 28px;
+  border-radius: var(--radius-full);
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.bookBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transition: left 0.5s ease;
+}
+
+.bookBtn:hover::before {
+  left: 100%;
+}
+
+.bookBtn:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(201, 168, 76, 0.35);
+}
+
+/* ─── Theme Toggle ─── */
+.themeToggle {
+  display: none; /* Show only in mobile menu */
+  background: var(--surface);
+  border: 1px solid var(--border);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  align-items: center;
+  justify-content: center;
+}
+
+.themeToggleDesktop {
+  background: none;
+  border: 1px solid var(--border);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+}
+
+.themeToggleDesktop:hover {
+  background: var(--surface);
+  border-color: var(--accent);
+  transform: rotate(20deg);
+}
+
+/* ─── Cart Icon ─── */
+.cartIcon {
+  position: relative;
+  cursor: pointer;
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.cartIcon:hover {
+  transform: scale(1.1);
+}
+
+.count {
+  position: absolute;
+  top: -4px;
+  right: -10px;
+  background: var(--accent);
+  color: var(--primary);
+  font-size: 10px;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 700;
+  font-family: var(--font-ui);
+}
+
+/* ─── Header Right (theme toggle + hamburger) ─── */
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ─── Hamburger ─── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+  width: 30px;
+  z-index: 1001;
+}
+
+.hamburger span {
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary);
+  border-radius: 2px;
+  display: block;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-origin: center;
+}
+
+.hamburgerActive span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburgerActive span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburgerActive span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ─── Mobile Overlay ─── */
+.overlay {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 0 24px;
+  }
+
+  .navLinks {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 860px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .themeToggleDesktop {
+    display: flex;
+  }
+
+  .navLinks {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 320px;
+    height: 100vh;
+    background: var(--card-bg);
+    flex-direction: column;
+    padding: 100px 40px 40px;
+    transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
+    gap: 0;
+    z-index: 1000;
+    overflow-y: auto;
+  }
+
+  .showMenu {
+    right: 0;
+  }
+
+  .navLinks li {
+    width: 100%;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .navLinks li:last-child {
+    border-bottom: none;
+  }
+
+  .navLinks li a {
+    font-size: 0.95rem;
+    display: block;
+  }
+
+  .navLinks li a::after {
+    display: none;
+  }
+
+  .themeToggle {
+    display: flex;
+  }
+
+  .bookBtn {
+    width: 100%;
+    text-align: center;
+    padding: 14px 28px;
+    margin-top: 8px;
+  }
+
+  .overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    animation: fadeIn 0.3s ease forwards;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0 16px;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+  }
+
+  .navLinks {
+    width: 100%;
+  }
+}
