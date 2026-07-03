@@ -44,14 +44,14 @@ router.post('/register', async (req, res) => {
       const token = user.generateVerificationToken();
       await user.save();
 
-      // Send verification email
-      try {
-        await sendVerificationEmail(normalizedEmail, name, token);
-        console.log(`[Register] Verification email sent to: ${normalizedEmail}`);
-      } catch (mailErr) {
-        console.error('[Register] Failed to send verification email:', mailErr.message);
-        // Don't block registration if email fails — log it
-      }
+      // Send verification email in the background (non-blocking)
+      sendVerificationEmail(normalizedEmail, name, token)
+        .then(() => {
+          console.log(`[Register] Verification email sent to: ${normalizedEmail}`);
+        })
+        .catch((mailErr) => {
+          console.error('[Register] Failed to send verification email:', mailErr.message);
+        });
 
       res.status(201).json({
         message: 'Registration successful! Please check your email to verify your account.',
@@ -127,8 +127,14 @@ router.post('/resend-verification', async (req, res) => {
     const token = user.generateVerificationToken();
     await user.save();
 
-    await sendVerificationEmail(user.email, user.name, token);
-    console.log(`[Resend] Verification email resent to: ${user.email}`);
+    // Send verification email in the background (non-blocking)
+    sendVerificationEmail(user.email, user.name, token)
+      .then(() => {
+        console.log(`[Resend] Verification email resent to: ${user.email}`);
+      })
+      .catch((mailErr) => {
+        console.error('[Resend] Failed to send verification email:', mailErr.message);
+      });
 
     res.json({ message: 'Verification email resent. Please check your inbox.' });
   } catch (error) {
