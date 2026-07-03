@@ -18,6 +18,7 @@ const transporter = nodemailer.createTransport({
  * @param {string} token    - Verification token
  */
 const sendVerificationEmail = async (toEmail, name, token) => {
+  console.log(`[Mailer] Preparing to send email from: "${process.env.GMAIL_USER}" to: "${toEmail}"`);
   const verifyUrl = `${process.env.CLIENT_URL}/verify-email/${token}`;
 
   const mailOptions = {
