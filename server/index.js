@@ -64,11 +64,16 @@ app.get('/api/testimonials', async (_req, res) => {
   }
 });
 
-// Serve React build in production
-if (process.env.NODE_ENV === 'production') {
+// Serve React build in production if it exists, otherwise provide a fallback JSON response
+const fs = require('fs');
+if (process.env.NODE_ENV === 'production' && fs.existsSync(path.join(__dirname, '../build'))) {
   app.use(express.static(path.join(__dirname, '../build')));
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../build', 'index.html'));
+  });
+} else {
+  app.get('/', (_req, res) => {
+    res.json({ status: 'ok', message: 'Dream Hotel API is running' });
   });
 }
 
