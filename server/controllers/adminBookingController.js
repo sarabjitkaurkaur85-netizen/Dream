@@ -1,3 +1,4 @@
+
 const Booking = require('../models/Booking');
 
 // GET /api/admin/bookings
