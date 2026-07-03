@@ -31,20 +31,20 @@ router.post('/register', async (req, res) => {
       return res.status(400).json({ error: 'User already exists' });
     }
 
-    // Create user (unverified)
+    // Create user (automatically verified)
     const user = await User.create({
       name,
       email: normalizedEmail,
       password,
-      isVerified: false,
+      isVerified: true, // Auto-verify in production to bypass email activation
     });
 
     if (user) {
-      // Generate verification token and save
+      /* 
+      // Commented out Nodemailer service
       const token = user.generateVerificationToken();
       await user.save();
 
-      // Send verification email in the background (non-blocking)
       sendVerificationEmail(normalizedEmail, name, token)
         .then(() => {
           console.log(`[Register] Verification email sent to: ${normalizedEmail}`);
@@ -52,9 +52,10 @@ router.post('/register', async (req, res) => {
         .catch((mailErr) => {
           console.error('[Register] Failed to send verification email:', mailErr.message);
         });
+      */
 
       res.status(201).json({
-        message: 'Registration successful! Please check your email to verify your account.',
+        message: 'Registration successful! You can now log in directly.',
         email: normalizedEmail,
       });
     } else {
