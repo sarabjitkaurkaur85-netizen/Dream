@@ -4,7 +4,7 @@ import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
 import styles from './RoomDetail.module.css';
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = (process.env.REACT_APP_API_URL || '') + '/api';
 
 function RoomDetail() {
   const { id } = useParams();

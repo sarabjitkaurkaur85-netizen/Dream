@@ -4,7 +4,7 @@ import { useCart } from '../../context/CartContext';
 import { useStaggerAnimation } from '../../hooks/useScrollAnimation';
 import styles from './RoomList.module.css';
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = (process.env.REACT_APP_API_URL || '') + '/api';
 
 const ROOM_TYPES = ['All', 'Single', 'Double', 'Deluxe', 'Family', 'Suite'];
 

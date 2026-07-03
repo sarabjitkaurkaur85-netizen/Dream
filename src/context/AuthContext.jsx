@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
       try {
         const token = localStorage.getItem('token');
         if (token) {
-          const res = await fetch('http://localhost:5000/api/auth/profile', {
+          const res = await fetch(`${process.env.REACT_APP_API_URL || ''}/api/auth/profile`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    const res = await fetch('http://localhost:5000/api/auth/login', {
+    const res = await fetch(`${process.env.REACT_APP_API_URL || ''}/api/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const register = async (name, email, password) => {
-    const res = await fetch('http://localhost:5000/api/auth/register', {
+    const res = await fetch(`${process.env.REACT_APP_API_URL || ''}/api/auth/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

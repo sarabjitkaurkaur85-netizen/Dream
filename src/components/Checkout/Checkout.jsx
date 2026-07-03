@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import styles from './Checkout.module.css';
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = (process.env.REACT_APP_API_URL || '') + '/api';
 
 function Checkout() {
   const { cartItems, removeFromCart, clearCart } = useCart();

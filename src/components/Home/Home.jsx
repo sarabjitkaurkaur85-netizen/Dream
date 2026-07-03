@@ -4,7 +4,7 @@ import styles from './Home.module.css';
 import { useStaggerAnimation } from '../../hooks/useScrollAnimation';
 import { useAnimatedCounter } from '../../hooks/useAnimatedCounter';
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = (process.env.REACT_APP_API_URL || '') + '/api';
 
 /* ─── Fallback Data ─── */
 const FALLBACK_ROOMS = [

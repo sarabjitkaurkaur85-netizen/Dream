@@ -14,7 +14,7 @@ function VerifyEmail() {
   useEffect(() => {
     const verify = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/auth/verify/${token}`);
+        const res = await fetch(`${process.env.REACT_APP_API_URL || ''}/api/auth/verify/${token}`);
         const data = await res.json();
 
         if (res.ok) {

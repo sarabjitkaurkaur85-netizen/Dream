@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const roomsRouter = require('./routes/rooms');
@@ -17,7 +18,14 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 // Middleware
-app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:3001'], credentials: true }));
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    process.env.CLIENT_URL
+  ].filter(Boolean),
+  credentials: true
+}));
 app.use(express.json());
 
 // Request logger
@@ -55,6 +63,14 @@ app.get('/api/testimonials', async (_req, res) => {
     res.status(500).json({ error: 'Server Error' });
   }
 });
+
+// Serve React build in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../build')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build', 'index.html'));
+  });
+}
 
 // Error handler
 app.use((err, _req, res, _next) => {
