@@ -3,7 +3,6 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const { protect } = require('../middleware/authMiddleware');
-const { sendVerificationEmail } = require('../utils/mailer');
 
 // Generate JWT
 const generateToken = (id) => {
@@ -40,20 +39,6 @@ router.post('/register', async (req, res) => {
     });
 
     if (user) {
-      /* 
-      // Commented out Nodemailer service
-      const token = user.generateVerificationToken();
-      await user.save();
-
-      sendVerificationEmail(normalizedEmail, name, token)
-        .then(() => {
-          console.log(`[Register] Verification email sent to: ${normalizedEmail}`);
-        })
-        .catch((mailErr) => {
-          console.error('[Register] Failed to send verification email:', mailErr.message);
-        });
-      */
-
       res.status(201).json({
         message: 'Registration successful! You can now log in directly.',
         email: normalizedEmail,
@@ -66,82 +51,7 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// @route   GET /api/auth/verify/:token
-// @desc    Verify email with token
-// @access  Public
-router.get('/verify/:token', async (req, res) => {
-  try {
-    const { token } = req.params;
 
-    const user = await User.findOne({
-      verificationToken: token,
-      verificationTokenExpires: { $gt: Date.now() },
-    });
-
-    if (!user) {
-      return res.status(400).json({ error: 'Invalid or expired verification link.' });
-    }
-
-    // Mark user as verified
-    user.isVerified = true;
-    user.verificationToken = undefined;
-    user.verificationTokenExpires = undefined;
-    await user.save();
-
-    console.log(`[Verify] Email verified for: ${user.email}`);
-
-    res.json({
-      message: 'Email verified successfully! You can now log in.',
-      _id: user.id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-      token: generateToken(user._id),
-    });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-// @route   POST /api/auth/resend-verification
-// @desc    Resend verification email
-// @access  Public
-router.post('/resend-verification', async (req, res) => {
-  try {
-    const { email } = req.body;
-
-    if (!email) {
-      return res.status(400).json({ error: 'Please provide your email' });
-    }
-
-    const user = await User.findOne({ email: email.toLowerCase().trim() });
-
-    if (!user) {
-      return res.status(404).json({ error: 'No account found with this email' });
-    }
-
-    if (user.isVerified) {
-      return res.status(400).json({ error: 'This email is already verified' });
-    }
-
-    // Generate new token
-    const token = user.generateVerificationToken();
-    await user.save();
-
-    // Send verification email in the background (non-blocking)
-    sendVerificationEmail(user.email, user.name, token)
-      .then(() => {
-        console.log(`[Resend] Verification email resent to: ${user.email}`);
-      })
-      .catch((mailErr) => {
-        console.error('[Resend] Failed to send verification email:', mailErr.message);
-      });
-
-    res.json({ message: 'Verification email resent. Please check your inbox.' });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
 
 // @route   POST /api/auth/login
 // @desc    Authenticate a user
