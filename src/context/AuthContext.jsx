@@ -48,11 +48,7 @@ export const AuthProvider = ({ children }) => {
     const data = await res.json();
 
     if (!res.ok) {
-      // If unverified, attach extra info to the error
-      const err = new Error(data.error || 'Failed to login');
-      err.unverified = data.unverified || false;
-      err.email = data.email || email;
-      throw err;
+      throw new Error(data.error || 'Failed to login');
     }
 
     localStorage.setItem('token', data.token);
@@ -79,13 +75,7 @@ export const AuthProvider = ({ children }) => {
     return data;
   };
 
-  // Called after email verification to auto-login
-  const setUserFromData = (data) => {
-    if (data?.token) {
-      localStorage.setItem('token', data.token);
-      setUser(data);
-    }
-  };
+
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -95,7 +85,7 @@ export const AuthProvider = ({ children }) => {
   const isAdmin = user?.role === 'admin';
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loading, isAdmin, setUserFromData }}>
+    <AuthContext.Provider value={{ user, login, register, logout, loading, isAdmin }}>
       {children}
     </AuthContext.Provider>
   );

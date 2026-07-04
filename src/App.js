@@ -9,7 +9,6 @@ import RoomList from './components/RoomList/RoomList';
 import Services from './components/Services/Services';
 import Login from './components/Auth/Login';
 import Signup from './components/Auth/Signup';
-import VerifyEmail from './components/Auth/VerifyEmail';
 import Profile from './components/Profile/Profile';
 import Checkout from './components/Checkout/Checkout';
 import Contact from './components/Contact/Contact';
@@ -50,7 +49,6 @@ function App() {
         <Route path="/book" element={<BookingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/verify-email/:token" element={<VerifyEmail />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/contact" element={<Contact />} />

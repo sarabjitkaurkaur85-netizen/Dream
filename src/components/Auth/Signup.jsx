@@ -36,25 +36,21 @@ function Signup() {
     }
   };
 
-  // ── Success state — show "check your email" screen ──
+  // ── Success state — show "Account Created!" screen ──
   if (registered) {
     return (
       <div className={styles.authContainer}>
         <div className={styles.authCard} style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '56px', marginBottom: '16px' }}>📧</div>
-          <h2 className={styles.authTitle}>Check Your Email!</h2>
+          <div style={{ fontSize: '56px', marginBottom: '16px' }}>✨</div>
+          <h2 className={styles.authTitle}>Account Created!</h2>
           <p className={styles.authSubtitle}>
-            We sent a verification link to
-          </p>
-          <p style={{ fontWeight: '700', color: '#1a7fd4', marginBottom: '16px', fontSize: '15px' }}>
-            {registeredEmail}
+            Your account has been successfully created.
           </p>
           <p style={{ color: '#718096', fontSize: '14px', lineHeight: '1.6', marginBottom: '24px' }}>
-            Click the link in the email to activate your account.
-            The link expires in <strong>24 hours</strong>.
+            You can now sign in using your email: <strong>{registeredEmail}</strong>.
           </p>
           <Link to="/login" className={styles.submitBtn} style={{ display: 'inline-block' }}>
-            Back to Login
+            Go to Login
           </Link>
         </div>
       </div>

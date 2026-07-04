@@ -8,9 +8,6 @@ function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [unverified, setUnverified] = useState(false);
-  const [unverifiedEmail, setUnverifiedEmail] = useState('');
-  const [resendStatus, setResendStatus] = useState(''); // '' | 'sending' | 'sent' | 'error'
 
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -18,44 +15,15 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    setUnverified(false);
-    setResendStatus('');
     setLoading(true);
 
     try {
       await login(email, password);
       navigate('/profile');
     } catch (err) {
-      // Check if backend returned unverified flag via the error message
-      if (err.unverified) {
-        setUnverified(true);
-        setUnverifiedEmail(err.email || email);
-      } else {
-        setError(err.message);
-      }
+      setError(err.message);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleResend = async () => {
-    setResendStatus('sending');
-    try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL || ''}/api/auth/resend-verification`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: unverifiedEmail }),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setResendStatus('sent');
-      } else {
-        setResendStatus('error');
-        setError(data.error || 'Failed to resend email.');
-      }
-    } catch {
-      setResendStatus('error');
-      setError('Failed to resend email. Please try again.');
     }
   };
 
@@ -67,34 +35,6 @@ function Login() {
 
         {/* Generic error */}
         {error && <div className={styles.authError}>{error}</div>}
-
-        {/* Unverified account banner */}
-        {unverified && (
-          <div className={styles.authWarning}>
-            <p>📧 <strong>Email not verified.</strong></p>
-            <p style={{ fontSize: '13px', marginTop: '4px' }}>
-              Check your inbox at <strong>{unverifiedEmail}</strong> for a verification link.
-            </p>
-            {resendStatus === '' && (
-              <button className={styles.resendBtn} onClick={handleResend}>
-                Resend verification email
-              </button>
-            )}
-            {resendStatus === 'sending' && (
-              <p style={{ fontSize: '13px', color: '#718096', marginTop: '8px' }}>Sending…</p>
-            )}
-            {resendStatus === 'sent' && (
-              <p style={{ fontSize: '13px', color: '#38a169', marginTop: '8px' }}>
-                ✅ Verification email sent! Check your inbox.
-              </p>
-            )}
-            {resendStatus === 'error' && (
-              <p style={{ fontSize: '13px', color: '#e53e3e', marginTop: '8px' }}>
-                ❌ Failed to send. Please try again.
-              </p>
-            )}
-          </div>
-        )}
 
         <form className={styles.authForm} onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
